@@ -9,5 +9,7 @@ package jreader;
  * @author bambucha
  */
 public class MainView {
-    
+
+    public MainView() {
+    }
 }
