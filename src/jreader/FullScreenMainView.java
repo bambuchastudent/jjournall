@@ -4,6 +4,7 @@
  */
 package jreader;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JWindow;
+import jjournal.Main.Controller;
 
 /**
  *
@@ -19,11 +21,23 @@ import javax.swing.JWindow;
  */
 public class FullScreenMainView extends JWindow {
 
-    public FullScreenMainView() {
-        super(new JFrame());
-        JButton button = new JButton("Exit");
+    final Controller viewController;
 
-        button.addActionListener(new ActionListener() {
+    public FullScreenMainView(Controller controller) {
+        super(new JFrame());
+        this.setName("FullScreen");
+        this.viewController = controller;
+        JButton exitButton = new JButton("Exit");
+        JButton returnButton = new JButton("Go to main menu");
+        returnButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ev) {
+                setVisible(false);
+                viewController.showView("Main");
+            }
+        });
+        exitButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent ev) {
@@ -32,7 +46,8 @@ public class FullScreenMainView extends JWindow {
         });
 
         setLayout(new FlowLayout());
-        add(button);
+        add(exitButton);
+        add(returnButton);
 
         //get the screen size
         Dimension screenSize =
@@ -40,5 +55,7 @@ public class FullScreenMainView extends JWindow {
 
         //sets the location of the window to top left of screen
         setBounds(0, 0, screenSize.width, screenSize.height);
+
+        viewController.registerView(getName(), this);
     }
 }
