@@ -18,10 +18,27 @@ import javax.swing.text.Segment;
  * @author bambucha
  */
 public class FormatData implements Document{
+    String pages[][] = new String[10][30];
+    public String formatDataAddress;
+    public FormatData(String dbEntryAddress) {
+        this.formatDataAddress = dbEntryAddress;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 30; j++) {
+                pages[i][j] = "Hello! From\n" + j;
+            }
+        }
+    }
 
+    
+    public String[][] getFormattedText() {
+        return this.pages;
+    }
+    public String[] getFormattedPage(int page){
+        return this.pages[page];
+    }
     @Override
     public int getLength() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return this.pages.length;
     }
 
     @Override

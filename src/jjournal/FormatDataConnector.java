@@ -11,19 +11,12 @@ package jjournal;
 public class FormatDataConnector {
 
     String pages[][];
-
-    public FormatDataConnector() {
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 30; j++) {
-                pages[i][j] = "Hello! From\n" + j;
-            }
-        }
+    FormatData fdata;
+    public FormatDataConnector(String dbEntry) {
+        fdata = new FormatData(dbEntry);
     }
 
-    public String[][] getFormattedText() {
-        return this.pages;
-    }
-    public String[] getFormattedPage(int page){
-        return this.pages[page];
+    public FormatData getFormatData(){
+        return fdata;
     }
 }

@@ -4,10 +4,15 @@
  */
 package jreader;
 
+import jjournal.FormatData;
+import jjournal.FormatDataConnector;
+
 /**
  *
  * @author bambucha
  */
 public class DBReadConnector {
+    FormatData fData;
+    FormatDataConnector fdc;
     
 }
